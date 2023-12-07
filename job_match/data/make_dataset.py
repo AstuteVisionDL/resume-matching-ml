@@ -1,30 +1,36 @@
-# -*- coding: utf-8 -*-
-import click
-import logging
 from pathlib import Path
-from dotenv import find_dotenv, load_dotenv
+
+from opendatasets import download
+
+from job_match.consts import RAW_DATA_DIR
+from job_match.data.consts import RESUMES_URL
+import gdown
 
 
-@click.command()
-@click.argument('input_filepath', type=click.Path(exists=True))
-@click.argument('output_filepath', type=click.Path())
-def main(input_filepath, output_filepath):
-    """ Runs data processing scripts to turn raw data from (../raw) into
-        cleaned data ready to be analyzed (saved in ../processed).
-    """
-    logger = logging.getLogger(__name__)
-    logger.info('making final data set from raw data')
+def download_resumes(output_dir: Path, output_filename: str = "resumes.csv"):
+    output_filepath = output_dir / "resumes" / output_filename
+    gdown.download(url=RESUMES_URL, output=str(output_filepath))
 
 
-if __name__ == '__main__':
-    log_fmt = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-    logging.basicConfig(level=logging.INFO, format=log_fmt)
+def download_vacancies(output_dir: Path):
+    output_dir = output_dir / "vacancies"
+    region_codes = [
+        "5000000000000",  # Moscow
+        "7800000000000",  # Saint Petersburg
+        "6300000000000",  # Samara
+        "5900000000000",  # Perm
+    ]
+    for region_code in region_codes:
+        download(
+            f"http://opendata.trudvsem.ru/api/v1/vacancies/region/{region_code}",
+            data_dir=output_dir,
+        )
 
-    # not used in this stub but often useful for finding various files
-    project_dir = Path(__file__).resolve().parents[2]
 
-    # find .env automagically by walking up directories until it's found, then
-    # load up the .env entries as environment variables
-    load_dotenv(find_dotenv())
+def download_all(output_filepath: Path = RAW_DATA_DIR):
+    download_resumes(output_filepath)
+    download_vacancies(output_filepath)
 
-    main()
+
+if __name__ == "__main__":
+    download_all()

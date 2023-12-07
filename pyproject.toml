@@ -8,7 +8,13 @@ packages = [{include = "job_match"}]
 
 [tool.poetry.dependencies]
 python = "~3.10"
+opendatasets = "^0.1.22"
+python-dotenv = "^1.0.0"
+gdown = "^4.7.1"
 
+
+[tool.poetry.group.dev.dependencies]
+pre-commit = "^3.5.0"
 
 [build-system]
 requires = ["poetry-core"]
