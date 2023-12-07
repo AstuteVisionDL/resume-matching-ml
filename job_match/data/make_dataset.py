@@ -9,6 +9,7 @@ import gdown
 
 def download_resumes(output_dir: Path, output_filename: str = "resumes.csv"):
     output_filepath = output_dir / "resumes" / output_filename
+    output_filepath.parent.mkdir(parents=True, exist_ok=True)
     gdown.download(url=RESUMES_URL, output=str(output_filepath))
 
 
