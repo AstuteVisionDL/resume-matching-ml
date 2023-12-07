@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "job-match-ml"
+version = "0.1.0"
+description = ""
+authors = ["AstuteVision"]
+readme = "README.md"
+packages = [{include = "job_match"}]
+
+[tool.poetry.dependencies]
+python = "~3.10"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
