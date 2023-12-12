@@ -2,3 +2,18 @@
 #
 # Documentation for this file format can be found in "The Data Catalog"
 # Link: https://docs.kedro.org/en/stable/data/data_catalog.html
+resumes:
+  type: pandas.CSVDataSet
+  filepath: "data/01_raw/resumes.csv"
+
+vacancies:
+  type: pandas.CSVDataSet
+  filepath: "data/01_raw/vacancies.csv"
+
+processed_resumes:
+  type: pandas.CSVDataSet
+  filepath: "data/02_intermediate/processed_resumes.csv"
+
+processed_vacancies:
+    type: pandas.CSVDataSet
+    filepath: "data/02_intermediate/processed_vacancies.csv"

@@ -3,3 +3,10 @@
 #
 # Documentation for this file format can be found in "Parameters"
 # Link: https://docs.kedro.org/en/0.18.14/configuration/parameters.html
+cv_dataset_url: https://drive.google.com/u/1/uc?id=1ikA_Ht45fXD2w5dWZ9sGTSRl-UNeCVub&export=download
+cv_dataset_path: data/01_raw
+
+vacancies_dataset_url: http://opendata.trudvsem.ru/api/v1/vacancies/region
+vacancies_dataset_path: data/01_raw
+# Moscow, Saints Peterburg, Samara, Perm
+vacancies_region_codes: ["5000000000000", "7800000000000", "6300000000000", "5900000000000"]
