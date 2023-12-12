@@ -4,7 +4,7 @@ generated using Kedro 0.18.14
 """
 
 from kedro.pipeline import Pipeline, pipeline, node
-from .nodes import download_resumes, download_vacancies
+from .nodes import download_resumes, download_vacancies, extract_job_title_from_vacancies, extract_job_title_from_resumes
 
 
 def create_pipeline(**kwargs) -> Pipeline:
@@ -22,5 +22,17 @@ def create_pipeline(**kwargs) -> Pipeline:
                 outputs="vacancies",
                 name="download_vacancies_dataset",
             ),
+            node(
+                extract_job_title_from_vacancies,
+                inputs="vacancies",
+                outputs="processed_vacancies",
+                name="extract_job_title_from_vacancies",
+            ),
+            node(
+                extract_job_title_from_resumes,
+                inputs="resumes",
+                outputs="processed_resumes",
+                name="extract_job_title_from_resumes",
+            )
         ]
     )
