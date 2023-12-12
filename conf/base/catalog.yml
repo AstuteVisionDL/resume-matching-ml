@@ -18,4 +18,6 @@ processed_vacancies:
     type: pandas.CSVDataSet
     filepath: "data/02_intermediate/processed_vacancies.csv"
 
-re
+resumes_embeddings:
+  type: pandas.CSVDataSet
+  filepath: "data/04_feature/resumes_embeddings.csv"
