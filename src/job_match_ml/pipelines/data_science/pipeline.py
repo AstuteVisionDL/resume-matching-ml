@@ -4,7 +4,10 @@ generated using Kedro 0.18.14
 """
 
 from kedro.pipeline import Pipeline, pipeline, node
-from .nodes import make_predictions_navec, evaluate_navec
+
+from .e5 import make_predictions_e5
+from .navec import make_predictions_navec
+from .evaluation import evaluate
 
 
 def create_pipeline(**kwargs) -> Pipeline:
@@ -16,9 +19,21 @@ def create_pipeline(**kwargs) -> Pipeline:
             name="make_predictions_navec",
         ),
         node(
-            evaluate_navec,
-            inputs="predictions_navec",
+            evaluate,
+            inputs=["predictions_navec", "params:navec_model_name"],
             outputs="evaluation_navec",
             name="evaluate_navec",
+        ),
+        node(
+            make_predictions_e5,
+            inputs="evaluation_data",
+            outputs="predictions_e5",
+            name="make_predictions_e5",
+        ),
+        node(
+            evaluate,
+            inputs=["predictions_e5", "params:e5_model_name"],
+            outputs="evaluation_e5",
+            name="evaluate_e5",
         )
     ])

@@ -3,7 +3,6 @@ This is a boilerplate pipeline 'data_science'
 generated using Kedro 0.18.14
 """
 import pandas as pd
-from sklearn.metrics import roc_auc_score, accuracy_score, precision_score, recall_score, f1_score
 import wget
 import os
 import numpy as np
@@ -41,7 +40,6 @@ def make_predictions_navec(evaluation_data: pd.DataFrame) -> pd.DataFrame:
         for word in words:
             navec[word.lower()]
             embedding += navec[word.lower()]
-        print(embedding)
         return embedding / sentence_len
 
     def make_prediction(row):
@@ -56,18 +54,3 @@ def make_predictions_navec(evaluation_data: pd.DataFrame) -> pd.DataFrame:
     return evaluation_data
 
 
-def evaluate_navec(predictions_navec: pd.DataFrame) -> pd.DataFrame:
-    """
-    Evaluates the model on the evaluation dataset.
-    """
-    target = predictions_navec["Совпадение"]
-    predicted = predictions_navec["prediction"]
-    predicted_binary = np.where(predicted > 0.5, 1, 0)
-    metrics_dict = {
-        "roc_auc": roc_auc_score(target, predicted),
-        "accuracy": accuracy_score(target, predicted_binary),
-        "precision": precision_score(target, predicted_binary),
-        "recall": recall_score(target, predicted_binary),
-        "f1": f1_score(target, predicted_binary),
-    }
-    return pd.DataFrame(metrics_dict, index=[0])
