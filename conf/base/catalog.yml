@@ -18,6 +18,14 @@ processed_vacancies:
     type: pandas.CSVDataSet
     filepath: "data/02_intermediate/processed_vacancies.csv"
 
-resumes_embeddings:
+evaluation_data:
   type: pandas.CSVDataSet
-  filepath: "data/04_feature/resumes_embeddings.csv"
+  filepath: "data/03_primary/evaluation_data.csv"
+
+predictions_navec:
+  type: pandas.CSVDataSet
+  filepath: "data/07_model_output/predictions_navec.csv"
+
+evaluation_navec:
+    type: pandas.CSVDataSet
+    filepath: "data/08_reporting/evaluation_navec.csv"

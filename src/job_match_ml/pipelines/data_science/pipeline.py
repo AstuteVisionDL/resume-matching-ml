@@ -4,15 +4,21 @@ generated using Kedro 0.18.14
 """
 
 from kedro.pipeline import Pipeline, pipeline, node
-from .nodes import extract_job_title_resumes_embeddings
+from .nodes import make_predictions_navec, evaluate_navec
 
 
 def create_pipeline(**kwargs) -> Pipeline:
     return pipeline([
         node(
-            extract_job_title_resumes_embeddings,
-            inputs="processed_resumes",
-            outputs="resumes_embeddings",
-            name="extract_job_title_resumes_embeddings",
+            make_predictions_navec,
+            inputs="evaluation_data",
+            outputs="predictions_navec",
+            name="make_predictions_navec",
+        ),
+        node(
+            evaluate_navec,
+            inputs="predictions_navec",
+            outputs="evaluation_navec",
+            name="evaluate_navec",
         )
     ])
