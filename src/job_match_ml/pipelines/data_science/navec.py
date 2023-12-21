@@ -1,7 +1,3 @@
-"""
-This is a boilerplate pipeline 'data_science'
-generated using Kedro 0.18.14
-"""
 import pandas as pd
 import wget
 import os

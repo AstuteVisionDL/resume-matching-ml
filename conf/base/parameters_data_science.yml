@@ -3,3 +3,7 @@
 #
 # Documentation for this file format can be found in "Parameters"
 # Link: https://docs.kedro.org/en/0.18.14/configuration/parameters.html
+
+navec_model_name: "navec"
+e5_model_name: "model_e5"
+mp5_model_name: "model_mp5"

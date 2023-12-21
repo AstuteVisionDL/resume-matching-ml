@@ -6,6 +6,7 @@ generated using Kedro 0.18.14
 from kedro.pipeline import Pipeline, pipeline, node
 
 from .e5 import make_predictions_e5
+from .mp5 import make_predictions_mp5
 from .navec import make_predictions_navec
 from .evaluation import evaluate
 
@@ -35,5 +36,17 @@ def create_pipeline(**kwargs) -> Pipeline:
             inputs=["predictions_e5", "params:e5_model_name"],
             outputs="evaluation_e5",
             name="evaluate_e5",
+        ),
+        node(
+            make_predictions_mp5,
+            inputs="evaluation_data",
+            outputs="predictions_mp5",
+            name="make_predictions_mp5",
+        ),
+        node(
+            evaluate,
+            inputs=["predictions_mp5", "params:mp5_model_name"],
+            outputs="evaluation_mp5",
+            name="evaluate_mp5",
         )
     ])
