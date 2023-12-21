@@ -1,57 +1,59 @@
-job-match
-==============================
+# job-match-ml
 
-A project to match jobs wwith given CV. Contains only ML part of the project
+## How to install dependencies
 
-Project Organization
-------------
+To install them, run:
 
-    ├── LICENSE
-    ├── Makefile           <- Makefile with commands like `make data` or `make train`
-    ├── README.md          <- The top-level README for developers using this project.
-    ├── data
-    │   ├── external       <- Data from third party sources.
-    │   ├── interim        <- Intermediate data that has been transformed.
-    │   ├── processed      <- The final, canonical data sets for modeling.
-    │   └── raw            <- The original, immutable data dump.
-    │
-    ├── docs               <- A default Sphinx project; see sphinx-doc.org for details
-    │
-    ├── models             <- Trained and serialized models, model predictions, or model summaries
-    │
-    ├── notebooks          <- Jupyter notebooks. Naming convention is a number (for ordering),
-    │                         the creator's initials, and a short `-` delimited description, e.g.
-    │                         `1.0-jqp-initial-data-exploration`.
-    │
-    ├── references         <- Data dictionaries, manuals, and all other explanatory materials.
-    │
-    ├── reports            <- Generated analysis as HTML, PDF, LaTeX, etc.
-    │   └── figures        <- Generated graphics and figures to be used in reporting
-    │
-    ├── requirements.txt   <- The requirements file for reproducing the analysis environment, e.g.
-    │                         generated with `pip freeze > requirements.txt`
-    │
-    ├── setup.py           <- makes project pip installable (pip install -e .) so src can be imported
-    ├── src                <- Source code for use in this project.
-    │   ├── __init__.py    <- Makes src a Python module
-    │   │
-    │   ├── data           <- Scripts to download or generate data
-    │   │   └── make_dataset.py
-    │   │
-    │   ├── features       <- Scripts to turn raw data into features for modeling
-    │   │   └── build_features.py
-    │   │
-    │   ├── models         <- Scripts to train models and then use trained models to make
-    │   │   │                 predictions
-    │   │   ├── predict_model.py
-    │   │   └── train_model.py
-    │   │
-    │   └── visualization  <- Scripts to create exploratory and results oriented visualizations
-    │       └── visualize.py
-    │
-    └── tox.ini            <- tox file with settings for running tox; see tox.readthedocs.io
+```
+pip install -r src/requirements.txt
+```
+
+## How to run full pipeline
+
+You can run all project with:
+
+```
+kedro run
+```
+
+### How to run only part of pipeline
+
+Pipeline consist of two parts: 
+1) Data processing pipeline
+2) Data science pipeline
+
+Data processing pipeline for extracting and transforming raw data from HH resume dataset and open API with vacancies 
+
+Data science pipeline for evaluation different methods of sentence similarity finding
+
+### Data processing pipeline
+To run data processing pipeline run:
+
+```bash
+kedro run --pipeline data_engineering
+```
+
+### Data science pipeline
+
+1) Download validation set from [google drive](https://drive.google.com/file/d/1XnRtaojtZJSzm1oJ2FobqBLgW-a6sZwd/view?usp=sharing)
+2) Place it in data/03_primary directory
+3) Run data science pipeline with:
+
+```bash
+kedro run --pipeline data_science
+```
 
 
---------
+# Results 
 
-<p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
+Evaluation results:
+e5
+https://app.clear.ml/projects/8e7a87fb96ed45a3951f29c5ed13cd65/experiments/00a1ced96ca24a358534debe15c36a7f/output/execution
+
+mp5
+https://app.clear.ml/projects/8e7a87fb96ed45a3951f29c5ed13cd65/experiments/3591761e3a3e461e8370ee89588ed4eb/output/execution
+
+navec:
+https://app.clear.ml/projects/8e7a87fb96ed45a3951f29c5ed13cd65/experiments/7b8abea984984056853cb70ed4fa677a/output/execution
+
+Main metric was Roc-AUC, so based on them best model was intfloat/multilingual-e5-large

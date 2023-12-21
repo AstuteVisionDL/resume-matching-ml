@@ -1,0 +1,48 @@
+# Here you can define all your data sets by using simple YAML syntax.
+#
+# Documentation for this file format can be found in "The Data Catalog"
+# Link: https://docs.kedro.org/en/stable/data/data_catalog.html
+resumes:
+  type: pandas.CSVDataSet
+  filepath: "data/01_raw/resumes.csv"
+
+vacancies:
+  type: pandas.CSVDataSet
+  filepath: "data/01_raw/vacancies.csv"
+
+processed_resumes:
+  type: pandas.CSVDataSet
+  filepath: "data/02_intermediate/processed_resumes.csv"
+
+processed_vacancies:
+    type: pandas.CSVDataSet
+    filepath: "data/02_intermediate/processed_vacancies.csv"
+
+evaluation_data:
+  type: pandas.CSVDataSet
+  filepath: "data/03_primary/evaluation_data.csv"
+
+predictions_navec:
+  type: pandas.CSVDataSet
+  filepath: "data/07_model_output/predictions_navec.csv"
+
+predictions_e5:
+  type: pandas.CSVDataSet
+  filepath: "data/07_model_output/predictions_e5.csv"
+
+predictions_mp5:
+  type: pandas.CSVDataSet
+  filepath: "data/07_model_output/predictions_mp5.csv"
+
+evaluation_navec:
+    type: pandas.CSVDataSet
+    filepath: "data/08_reporting/evaluation_navec.csv"
+
+evaluation_e5:
+    type: pandas.CSVDataSet
+    filepath: "data/08_reporting/evaluation_e5.csv"
+
+evaluation_mp5:
+    type: pandas.CSVDataSet
+    filepath: "data/08_reporting/evaluation_mp5.csv"
+
