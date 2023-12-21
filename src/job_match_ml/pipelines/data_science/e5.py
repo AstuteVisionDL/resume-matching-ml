@@ -25,6 +25,8 @@ def e5_sts(sent1: str, sent2: str) -> float:
     # normalize embeddings
     embeddings = F.normalize(embeddings, p=2, dim=1)
     scores = (embeddings @ embeddings.T) * 100
+    scores = scores.tolist()
+    scores = np.divide(scores, 100)
     return scores[0][1]
 
 

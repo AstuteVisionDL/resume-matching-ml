@@ -31,7 +31,7 @@ def mpnet_sts(sent1: str, sent2: str) -> float:
     sentence_embeddings = F.normalize(sentence_embeddings, p=2, dim=1)
     scores = (sentence_embeddings @ sentence_embeddings.T) * 100
     scores = scores.tolist()
-    scores = np.divide(scores, 20)
+    scores = np.divide(scores, 100)
     return scores[0][1]
 
 
