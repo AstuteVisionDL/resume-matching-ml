@@ -47,5 +47,13 @@ kedro run --pipeline data_science
 # Results 
 
 Evaluation results:
-https://app.clear.ml/projects/8e7a87fb96ed45a3951f29c5ed13cd65/experiments/0d9b2962a4ac48d7a01ed5abe0e1eb01/output/execution
-https://app.clear.ml/projects/8e7a87fb96ed45a3951f29c5ed13cd65/experiments/bcd63ee8d9914663ad6ccd0f3a3d52de/output/execution
+e5
+https://app.clear.ml/projects/8e7a87fb96ed45a3951f29c5ed13cd65/experiments/00a1ced96ca24a358534debe15c36a7f/output/execution
+
+mp5
+https://app.clear.ml/projects/8e7a87fb96ed45a3951f29c5ed13cd65/experiments/3591761e3a3e461e8370ee89588ed4eb/output/execution
+
+navec:
+https://app.clear.ml/projects/8e7a87fb96ed45a3951f29c5ed13cd65/experiments/7b8abea984984056853cb70ed4fa677a/output/execution
+
+Main metric was Roc-AUC, so based on them best model was intfloat/multilingual-e5-large
